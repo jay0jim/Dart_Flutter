@@ -24,89 +24,45 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// // 内容组件
-// class HomeContent extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       // 使用Container组件，类似于div
-//       child: Container(
-//         /// 加载本地图片
-//         child: Image.asset('images/test01.jpg'),
-
-//         // child: Image.network(
-//         //     'https://c-ssl.duitang.com/uploads/blog/202011/06/20201106134524_8560e.jpg'),
-//         // height: 300.0,
-//         // width: 300.0,
-//         // decoration: BoxDecoration(
-//         //   color: Colors.blue,
-//         //   // border: Border.all(
-//         //   //   color: Colors.black,
-//         //   //   width: 2.0,
-//         //   // ),
-//         //   borderRadius: BorderRadius.circular(150),
-//         //   image: DecorationImage(
-//         //     image: NetworkImage(
-//         //       'https://c-ssl.duitang.com/uploads/blog/202011/06/20201106134524_8560e.jpg',
-//         //       scale: 1.0,
-//         //     ),
-//         //     fit: BoxFit.cover,
-//         //   ),
-//         // ),
-//         // padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-//         // alignment: Alignment.center,
-
-//         /////
-//         /// ClipOval 裁剪圆形图片
-//         /// ClipRect 裁剪矩形图片
-//         /// ClipRRect 裁剪圆角矩形图片
-//         // child: ClipRRect(
-//         //   child: Image.network(
-//         //     'https://c-ssl.duitang.com/uploads/blog/202011/06/20201106134524_8560e.jpg',
-//         //     width: 300,
-//         //     height: 300,
-//         //   ),
-//         //   borderRadius: BorderRadius.circular(10),
-//         // ),
-//       ),
-//     );
-//   }
-// }
-
-// 列表ListView
-// class HomeContent extends StatelessWidget {
-//   List<Widget> _buildList() {
-//     var contentList = listData.map((e) {
-//       return ListTile(
-//         leading: Image.network(e['imageUrl']),
-//         title: Text(e['title']),
-//         subtitle: Text(e['author']),
-//       );
-//     });
-//     return contentList.toList();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListView(
-//       children: this._buildList(),
-//     );
-//   }
-// }
-
-// ListView.builder 新建列表
 class HomeContent extends StatelessWidget {
-  Widget _getListContent(BuildContext context, int index) {
-    return ListTile(
-      leading: Image.network(listData[index]['imageUrl']),
-      title: Text(listData[index]['title']),
-      subtitle: Text(listData[index]['author']),
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      child: Column(
+        children: [
+          Container(
+            child: Row(children: [
+              Expanded(
+                child: Image.network(listData[0]['imageUrl']))],),
+            height: 200,
+          ),
+        ],
+      ),
     );
   }
+}
+
+class IconContainer extends StatelessWidget {
+  double size = 32.0;
+  Color color = Colors.red;
+  IconData icon;
+
+  IconContainer(this.icon, {this.color, this.size});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: listData.length, itemBuilder: this._getListContent);
+    return Container(
+      width: 100,
+      height: 100,
+      color: this.color,
+      child: Center(
+        child: Icon(
+          this.icon,
+          size: this.size,
+          color: Colors.white,
+        ),
+      ),
+    );
   }
 }
