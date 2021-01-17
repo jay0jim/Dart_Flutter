@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'res/ListData.dart';
+
 void main(List<String> args) {
   runApp(MyApp());
 }
@@ -11,50 +13,55 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar( // 导航栏
+        appBar: AppBar(
+          // 导航栏
           title: Text('Flutter Demo'),
         ),
         body: HomeContent(), // 内容
-        backgroundColor: Colors.grey,
-        ),
-    ); 
+        backgroundColor: Colors.white,
+      ),
+    );
   }
 }
 
-// 内容组件
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      // 使用Container组件，类似于div
-      child: Container(
-        child: Transform.rotate(
-          angle: math.pi/2,
-          alignment: Alignment.center,
-          child: Text(
-            'Hello, flutter.',
-            textDirection: TextDirection.ltr,
-            // textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 40,
-              color: Colors.yellow,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      child: Column(
+        children: [
+          Container(
+            child: Row(children: [
+              Expanded(
+                child: Image.network(listData[0]['imageUrl']))],),
+            height: 200,
           ),
-        ),
-        ),
-        height: 300.0,
-        width: 300.0,
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          border: Border.all(
-            color: Colors.black,
-            width: 2.0,
-          ),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-        alignment: Alignment.center,
-        
+        ],
+      ),
+    );
+  }
+}
 
+class IconContainer extends StatelessWidget {
+  double size = 32.0;
+  Color color = Colors.red;
+  IconData icon;
+
+  IconContainer(this.icon, {this.color, this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 100,
+      color: this.color,
+      child: Center(
+        child: Icon(
+          this.icon,
+          size: this.size,
+          color: Colors.white,
+        ),
       ),
     );
   }
