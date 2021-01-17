@@ -1,0 +1,28 @@
+//
+//  PrefixHeader.pch
+//  LearningFlutter
+//
+//  Created by Tony on 2021/1/17.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//颜色
+#define JMColorRGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+#define JMHexColorRGBA(hexValue, a)                            \
+[UIColor colorWithRed:((hexValue & 0xFF0000) >> 16) / 255.0 \
+green:((hexValue & 0x00FF00) >> 8) / 255.0  \
+blue:(hexValue & 0x0000FF) / 255.0         \
+alpha:(a)]
+
+#define JMHexColorRGB(hexValue) JMHexColorRGBA(hexValue, 1.0)
+
+// 通用头文件
+#import "Base/JMNavigationController.h"
+#import "Base/MainTableViewController.h"
+
+#import <JKCategories.h>
+
+#endif /* PrefixHeader_pch */
